@@ -1,6 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
-import { Button, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
   //data-type
@@ -23,15 +31,14 @@ export default function App() {
     { id: 8, title: "Tony Kroos" },
     { id: 9, title: "Nine" },
     { id: 10, title: "M10" },
-  ])
-
+  ]);
 
   //object, array...
   return (
     <View style={styles.container}>
       <Text style={{ fontSize: 40, color: "red" }}>{name}</Text>
       <TextInput
-        onChangeText={value => setName(value)}
+        onChangeText={(value) => setName(value)}
         value={name}
         autoCapitalize="none"
         autoCorrect={true}
@@ -41,11 +48,23 @@ export default function App() {
         style={{ borderColor: "violet", borderWidth: 1, padding: 10 }}
       />
       <Text style={styles.text}>{age}</Text>
-      <Text style={styles.text}>
-        {JSON.stringify(person)}
-      </Text>
-        <Button title="Add New" color={"blue"} onPress={() => alert("tap me")} />
-          <ScrollView style={{marginTop: 20, borderColor: "red", borderWidth: 1}}>
+      <Text style={styles.text}>{JSON.stringify(person)}</Text>
+      <Button title="Add New" color={"blue"} onPress={() => alert("tap me")} />
+      <FlatList
+        style={{marginTop: 20, borderColor: "red", borderWidth: 1}}
+        data={todoList}
+        keyExtractor={item => item.id + ""}
+        renderItem={({ item }) => {
+          {
+            return (
+              <Text key={item.id} style={styles.todo}>
+                {item.title}
+              </Text>
+            );
+          }
+        }}
+      />
+      {/* <ScrollView style={{marginTop: 20, borderColor: "red", borderWidth: 1}}>
             {todoList.map((todo, index) => {
               return (
                 <Text key={todo.id} style={styles.todo}>
@@ -53,7 +72,7 @@ export default function App() {
                 </Text>
               )
             })}
-          </ScrollView>
+          </ScrollView> */}
     </View>
   );
 }
@@ -63,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     backgroundColor: "pink",
     marginBottom: 20,
-    padding: 15
+    padding: 15,
   },
   text: {
     fontSize: 30,
@@ -79,7 +98,6 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     paddingTop: 20,
     paddingHorizontal: 20,
-    marginTop: 50
-    
+    marginTop: 50,
   },
 });
