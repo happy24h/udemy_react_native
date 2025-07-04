@@ -13,10 +13,16 @@ export default function App() {
     const todo = { id: randomInteger(1, 1000000), title: title };
     setTodoList([...todoList, todo]);
   };
+
+  const deleteTodo = (id: number) => {
+    const newTodo = todoList.filter(todo => todo.id != id);
+    setTodoList(newTodo);
+  }
+  
   return (
     <View style={styles.container}>
       <InputTodo addTodo={addTodo} />
-      <ListTodo todoList={todoList} />
+      <ListTodo todoList={todoList} deleteTodo={deleteTodo} />
     </View>
   );
 }
