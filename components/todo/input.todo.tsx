@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextInput, View, StyleSheet } from "react-native";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import MineButton from "../button/mine.button";
 
 const styles = StyleSheet.create({
   todoInput: {
@@ -22,10 +24,10 @@ function InputTodo(props: IProps) {
   const handleAddNewTodo = () => {
     addTodo(name);
     setName("");
-  }
+  };
 
   return (
-    <View>
+    <View style={{ marginBottom: 20 }}>
       <TextInput
         onChangeText={(value) => setName(value)}
         value={name}
@@ -34,7 +36,8 @@ function InputTodo(props: IProps) {
         style={styles.todoInput}
       />
 
-      <Button title="Add New" color={"blue"} onPress={handleAddNewTodo} />
+      {/* <Button title="Add New" color={"blue"} onPress={handleAddNewTodo} /> */}
+      <MineButton title="Add New" onPress={handleAddNewTodo}/>
     </View>
   );
 }
