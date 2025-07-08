@@ -7,31 +7,35 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 40,
     borderWidth: 1,
-    borderColor: "red",
+    // borderColor: "red",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "center",
 
   },
   item1: {
     borderWidth: 1,
+    flex: 1,
     backgroundColor: "violet",
     padding: 20,
     height: 150
   },
   item2: {
+    flex: 2,
     padding: 20,
     borderWidth: 1,
     backgroundColor: "green",
     height: 250
   },
   item3: {
+    flex: 3,
     padding: 20,
     borderWidth: 1,
     backgroundColor: "orange",
     height: 350
   },
   item4: {
+    flex: 4,
     padding: 20,
     borderWidth: 1,
     backgroundColor: "grey",

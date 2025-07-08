@@ -21,10 +21,14 @@ export default function App() {
   }
   
   return (
+   
     <View style={styles.container}>
       <FlexBox/>
+      <View style={{marginTop: 30}}>
       <InputTodo addTodo={addTodo} />
       <ListTodo todoList={todoList} deleteTodo={deleteTodo} />
+
+      </View>
     </View>
   );
 }
@@ -44,6 +48,6 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     paddingTop: 20,
     paddingHorizontal: 20,
-    marginTop: 50,
+    // marginTop: 50,
   },
 });
