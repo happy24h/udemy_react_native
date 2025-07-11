@@ -1,53 +1,45 @@
-import { StyleSheet, View } from "react-native";
-import InputTodo from "./components/todo/input.todo";
-import { useState } from "react";
-import ListTodo from "./components/todo/list.todo";
-import FlexBox from "./components/todo/flexbox";
+// In App.js in a new project
 
-export default function App() {
-  const [todoList, setTodoList] = useState<ITodo[]>([]);
-  function randomInteger(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+import * as React from "react";
+import { View, Text, Button } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-  const addTodo = (title: string) => {
-    const todo = { id: randomInteger(1, 1000000), title: title };
-    setTodoList([...todoList, todo]);
-  };
-
-  const deleteTodo = (id: number) => {
-    const newTodo = todoList.filter(todo => todo.id != id);
-    setTodoList(newTodo);
-  }
-  
+function HomeScreen({ navigation }: any) {
   return (
-   
-    <View style={styles.container}>
-      <FlexBox/>
-      <View style={{marginTop: 30}}>
-      <InputTodo addTodo={addTodo} />
-      <ListTodo todoList={todoList} deleteTodo={deleteTodo} />
-
-      </View>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Home Screen</Text>
+         <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    color: "red",
-  },
-  textGreen: {
-    color: "green",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    // alignItems: "center",
-    // justifyContent: "center",
-    paddingTop: 20,
-    paddingHorizontal: 20,
-    // marginTop: 50,
-  },
-});
+function DetailsScreen({ navigation }: any) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Text>Details Screen</Text>
+      <Button
+        title="Go to Details... again"
+        onPress={() => navigation.navigate('Home')}
+      />
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
