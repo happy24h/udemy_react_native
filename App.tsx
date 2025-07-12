@@ -10,8 +10,12 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import "react-native-gesture-handler";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 function HomeScreen({ navigation }: any) {
   return (
@@ -126,7 +130,7 @@ function App() {
           })}
         />
       </Stack.Navigator> */}
-      <Drawer.Navigator initialRouteName="Home">
+      {/* <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen
           name="Home"
           component={HomeScreen}
@@ -139,7 +143,32 @@ function App() {
           component={DetailsScreen}
           options={{ headerTitle: "Chi tiết" }}
         />
-      </Drawer.Navigator>
+      </Drawer.Navigator> */}
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === "Home") {
+              iconName = focused
+                ? "american-football"
+                : "american-football-outline";
+            } else if (route.name === "Details") {
+              iconName = focused ? "aperture" : "aperture-outline";
+            }
+
+            // You can return any component that you like here!
+            return (
+              <Ionicons name={iconName as any} size={size} color={color} />
+            );
+          },
+          tabBarActiveTintColor: "tomato",
+          tabBarInactiveTintColor: "gray",
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Details" component={DetailsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
