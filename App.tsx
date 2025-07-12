@@ -2,31 +2,55 @@
 
 import * as React from "react";
 import { View, Text, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 function HomeScreen({ navigation }: any) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
+      <Text>Đây là trang home</Text>
+      <View style={{ marginVertical: 10 }}>
+        <Button
+          title="Go to Details"
+          onPress={() => navigation.navigate("Details")}
+        />
+      </View>
+      <View style={{ marginVertical: 10 }}>
+        <Button
+          title="GO USER ID = 1"
+          onPress={() => navigation.navigate("Details")}
+        />
+      </View>
+      <View style={{ marginVertical: 10 }}>
+        <Button
+          title="GO USER ID = 2"
+          onPress={() => navigation.navigate("Details")}
+        />
+      </View>
     </View>
   );
 }
 
-function DetailsScreen({ navigation }: any) {
+function DetailsScreen() {
+  const navigation: any = useNavigation();
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>User id = ????</Text>
+      <View style={{ marginVertical: 10 }}>
+        <Button
+          title="Go to Details... again"
+          onPress={() => navigation.push("Details")}
+        />
+      </View>
+      <View style={{ marginVertical: 10 }}>
+        <Button
+          title="Go to Home"
+          onPress={() => navigation.navigate("Home")}
+        />
+      </View>
+      <View style={{ marginVertical: 10 }}>
+        <Button title="Go back" onPress={() => navigation.goBack()} />
+      </View>
     </View>
   );
 }
