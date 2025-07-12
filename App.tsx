@@ -8,6 +8,10 @@ import {
   useRoute,
 } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import "react-native-gesture-handler";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
+const Drawer = createDrawerNavigator();
 
 function HomeScreen({ navigation }: any) {
   return (
@@ -68,20 +72,30 @@ function DetailsScreen(props: any) {
   );
 }
 
+function NotificationsScreen({ navigation }: any) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
+    </View>
+  );
+}
+
 const Stack = createNativeStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator   screenOptions={{
-        headerStyle: {
-          backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}>
+      {/* <Stack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: "#f4511e",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "bold",
+          },
+        }}
+      >
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -111,7 +125,21 @@ function App() {
             },
           })}
         />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            headerTitle: "Trang chủ",
+          }}
+        />
+        <Drawer.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={{ headerTitle: "Chi tiết" }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
